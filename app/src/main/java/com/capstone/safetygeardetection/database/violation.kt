@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "violation_table")
-data class Game (
+data class Violation (
 
         @PrimaryKey(autoGenerate = true)
         var violationID: Long = 0L,
