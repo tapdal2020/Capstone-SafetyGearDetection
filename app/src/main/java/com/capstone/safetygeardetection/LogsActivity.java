@@ -2,8 +2,11 @@ package com.capstone.safetygeardetection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.ViewGroup;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.io.File;
@@ -15,9 +18,22 @@ public class LogsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logs);
 
-        //LinearLayout myLayout = (ViewGroup) mView.findViewById(R.id.MyLL);
+        LinearLayout myLayout = findViewById(R.id.LogsVerticalLayout);
 
-        File directory = this.getApplicationContext().getFilesDir();
-        File file = new File(directory, "");
+        for (int i = 0; i < 50; i++) {
+            LogThumbnail logInstance = new LogThumbnail(this, null, "Logs");
+            logInstance.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent picture_intent = new Intent(LogsActivity.this, ViolationDetail.class);
+                    startActivity(picture_intent);
+                }
+            });
+
+            myLayout.addView(logInstance);
+        }
+
+        /*File directory = this.getApplicationContext().getFilesDir();
+        File file = new File(directory, "");*/
     }
 }

@@ -1,7 +1,0 @@
-#Mon Oct 28 11:25:33 CDT 2019
-base.0=/Users/matthew/Documents/school/Capstone/code/SafetyGearDetection/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex
-path.1=classes.dex
-renamed.1=classes2.dex
-path.0=classes.dex
-renamed.0=classes.dex
-base.1=/Users/matthew/Documents/school/Capstone/code/SafetyGearDetection/app/build/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex

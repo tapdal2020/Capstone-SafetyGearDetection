@@ -2,8 +2,9 @@ package com.capstone.safetygeardetection;
 
 import android.content.Context;
 
+import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,9 +14,35 @@ import androidx.annotation.Nullable;
 public class LogThumbnail extends LinearLayout {
 
     private ImageView violation_thumb;
-    private TextView violation_description;
+    private TextView violation_description, violation_timestamp;
 
-    public LogThumbnail(Context context, @Nullable AttributeSet attrs) {
+    public LogThumbnail(Context context, @Nullable AttributeSet attrs, String description) {
         super(context, attrs);
+
+        setOrientation(LinearLayout.HORIZONTAL);
+        setPadding(0, 20, 0, 20);
+        setGravity(Gravity.CENTER_VERTICAL);
+        setBackgroundColor(Color.LTGRAY);
+        setWeightSum(10f);
+
+        violation_thumb = new ImageView(context);
+        violation_thumb.setImageResource(R.drawable.log_icon);
+        violation_thumb.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 2f));
+
+        violation_description = new TextView(context);
+        violation_description.setText(description);
+        //violation_description.setGravity(Gravity.CENTER_VERTICAL);
+        violation_description.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 4f));
+        violation_description.setBackgroundColor(Color.CYAN);
+
+        violation_timestamp = new TextView(context);
+        violation_timestamp.setText("1:10 p.m.");
+        //violation_timestamp.setGravity(Gravity.CENTER_VERTICAL);
+        violation_description.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 4f));
+        violation_timestamp.setBackgroundColor(Color.MAGENTA);
+
+        this.addView(violation_thumb);
+        this.addView(violation_description);
+        this.addView(violation_timestamp);
     }
 }
