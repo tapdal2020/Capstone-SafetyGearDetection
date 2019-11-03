@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     missingPermission.toArray(new String[missingPermission.size()]),
                     REQUEST_PERMISSION_CODE);
         }
-
     }
 
     /**
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    showToast("registering, pls wait...");
+                    showToast("Registering API key, pls wait...");
 
                     DJISDKManager.getInstance().registerApp(MainActivity.this.getApplicationContext(), new DJISDKManager.SDKManagerCallback() {
                         @Override
@@ -194,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Runnable updateRunnable = new Runnable() {
-
         @Override
         public void run() {
             Intent intent = new Intent(FLAG_CONNECTION_CHANGE);
@@ -203,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void showToast(final String toastMsg) {
-
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
@@ -211,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     public void goToFlight(View view) {
