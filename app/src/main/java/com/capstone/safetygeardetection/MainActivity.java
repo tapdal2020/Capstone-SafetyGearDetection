@@ -17,9 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // When the compile and target version is higher than 22, please request the
-        // following permissions at runtime to ensure the
-        // SDK work well.
+        // When the compile and target version is higher than 22, request the following so the SDK works
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.VIBRATE,
