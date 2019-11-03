@@ -109,18 +109,18 @@ public class DemoApplication extends Application {
                 Log.d("TAG", "onProductDisconnect");
                 notifyStatusChange();
             }
+            
             @Override
             public void onProductConnect(BaseProduct baseProduct) {
                 Log.d("TAG", String.format("onProductConnect newProduct:%s", baseProduct));
                 notifyStatusChange();
-
             }
+            
             @Override
             public void onComponentChange(BaseProduct.ComponentKey componentKey, BaseComponent oldComponent,
                                           BaseComponent newComponent) {
                 if (newComponent != null) {
                     newComponent.setComponentListener(new BaseComponent.ComponentListener() {
-
                         @Override
                         public void onConnectivityChange(boolean isConnected) {
                             Log.d("TAG", "onComponentConnectivityChanged: " + isConnected);
@@ -134,8 +134,8 @@ public class DemoApplication extends Application {
                                 componentKey,
                                 oldComponent,
                                 newComponent));
-
             }
+            
             @Override
             public void onInitProcess(DJISDKInitEvent djisdkInitEvent, int i) {
 
@@ -171,7 +171,6 @@ public class DemoApplication extends Application {
     }
 
     private Runnable updateRunnable = new Runnable() {
-
         @Override
         public void run() {
             Intent intent = new Intent(FLAG_CONNECTION_CHANGE);
