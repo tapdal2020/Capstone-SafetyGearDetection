@@ -21,7 +21,10 @@ public class LogsActivity extends AppCompatActivity {
         LinearLayout myLayout = findViewById(R.id.LogsVerticalLayout);
 
         for (int i = 0; i < 50; i++) {
-            LogThumbnail logInstance = new LogThumbnail(this, null, "Logs");
+            LogThumbnail logInstance = new LogThumbnail(this, null, "Logs", 0);
+            //logInstance.setNewImageView("");
+            logInstance.setDescription("testing " + i);
+            logInstance.setTimestamp("12:34 p.m.");
             logInstance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

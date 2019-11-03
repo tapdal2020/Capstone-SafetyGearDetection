@@ -36,6 +36,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- DJI SDK -->
+        <uses-library android:name="com.android.future.usb.accessory" />
+        <meta-data
+            android:name="com.dji.sdk.API_KEY"
+            android:value="10fb51c83b9b9c6dbcbeb60a"/>
+        <activity
+            android:name="dji.sdk.sdkmanager.DJIAoaControllerActivity"
+            android:theme="@android:style/Theme.Translucent" >
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+                android:resource="@xml/accessory_filter" />
+        </activity>
+        <service android:name="dji.sdk.sdkmanager.DJIGlobalService" >
+        </service>
+
         <activity android:name=".ViolationDetail"></activity>
 
         <!-- DJI SDK -->
