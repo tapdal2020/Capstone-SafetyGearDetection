@@ -10,6 +10,9 @@ data class Violation (
         @PrimaryKey(autoGenerate = true)
         var violationID: Long = 0L,
 
+        @ColumnInfo(name = "description")
+        var description: String = "",
+
         @ColumnInfo(name = "time_stamp")
         var time_stamp: String = "",
 
