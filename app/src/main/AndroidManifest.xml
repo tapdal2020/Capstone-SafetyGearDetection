@@ -59,7 +59,7 @@
         <service android:name="dji.sdk.sdkmanager.DJIGlobalService" >
         </service>
 
-        <activity android:name=".ViolationDetail"></activity>
+        <activity android:name=".logs.ViolationDetail"></activity>
 
         <!-- DJI SDK -->
         <uses-library android:name="com.android.future.usb.accessory" />
@@ -74,7 +74,7 @@
             android:name=".FlyActivity"
             android:label="@string/fly" />
         <activity
-            android:name=".LogsActivity"
+            android:name=".logs.LogsActivity"
             android:label="@string/logs" />
         <activity
             android:name=".SettingsActivity"

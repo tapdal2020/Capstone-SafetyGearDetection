@@ -1,4 +1,4 @@
-package com.capstone.safetygeardetection;
+package com.capstone.safetygeardetection.logs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,9 @@ import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.capstone.safetygeardetection.R;
+import com.capstone.safetygeardetection.database.ViolationObj;
 
 import org.w3c.dom.Text;
 
@@ -30,11 +33,11 @@ public class ViolationDetail extends AppCompatActivity {
 
         Intent thisIntent = getIntent();
 
-        setNewImageView(thisIntent.getStringExtra("THUMB_PATH"));
-        setDescription(thisIntent.getStringExtra("DESCRIPTION"));
-        setGPSLocation(thisIntent.getStringExtra("GPS_LOCATION"));
-        setHeading(thisIntent.getStringExtra("DRONE_HEADING"));
-        setTimestamp(thisIntent.getStringExtra("TIMESTAMP"));
+        setNewImageView(thisIntent.getStringExtra(ViolationObj.IMAGE_PATH));
+        setDescription(thisIntent.getStringExtra(ViolationObj.DESCRIPTION));
+        setGPSLocation(thisIntent.getStringExtra(ViolationObj.GPS_LOCATION));
+        setHeading(thisIntent.getStringExtra(ViolationObj.DRONE_HEADING));
+        setTimestamp(thisIntent.getStringExtra(ViolationObj.TIMESTAMP));
     }
 
     private void setNewImageView(String thumbFilePath) {
@@ -51,7 +54,7 @@ public class ViolationDetail extends AppCompatActivity {
     }
 
     private void setHeading(String newText) {
-        violation_heading.setText("Drone Heading:" + newText);
+        violation_heading.setText("Drone Heading: " + newText);
     }
 
     private void setTimestamp(String newText) {

@@ -9,7 +9,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.capstone.safetygeardetection.R;
+import com.capstone.safetygeardetection.database.DatabaseJSON;
+import com.capstone.safetygeardetection.logs.LogsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
+
+        DatabaseJSON dio = DatabaseJSON.getInstance(this);
+        //dio.addViolation(this, "/imgs/1", "First test", "2.5", "1.4", "12:10 p.m.");
+        //dio.addViolation(this, "/imgs/w", "Morning job", "2.5", "1.4", "3:21 a.m.");
     }
 
     public void goToFlight(View view) {
