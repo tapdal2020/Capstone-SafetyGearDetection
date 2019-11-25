@@ -1,23 +1,29 @@
 package com.capstone.safetygeardetection.database;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.View;
+
+import com.capstone.safetygeardetection.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Calendar;
 
 public class DatabaseJSON {
-
-    private final String FILE_PATH = "~/Documents/school/Capstone/file.json";
 
     private static DatabaseJSON instance = null;
     private List<ViolationObj> violations;
@@ -44,7 +50,8 @@ public class DatabaseJSON {
         return violations;
     }
 
-    public void addViolation(Context context, String imagePath, String description, String gpsLocation, String droneHeading, String timestamp) {
+    public void addViolation(Context context, Bitmap screenshotImage, String description, String gpsLocation, String droneHeading, String timestamp) {
+        String imagePath = saveToBitmap(context, screenshotImage);
         violations.add(new ViolationObj(imagePath, description, gpsLocation, droneHeading, timestamp));
         writeAllViolationsToDisk(context);
     }
@@ -108,6 +115,42 @@ public class DatabaseJSON {
             System.err.println(e);
         } catch (IOException e) {
             System.err.println(e);
+        }
+    }
+
+    private String saveToBitmap(Context c, Bitmap screenshotImage) {
+        //take a screenshot
+        //load that screenshot as a bitmap
+        //store that in external storage, add as log to db
+        //load that log
+
+        //Bitmap imageToStore = BitmapFactory.decodeResource(c.getResources(), R.drawable.hat);
+        //Bitmap imageFromDB = BitmapFactory.decodeFile(c.getExternalCacheDir().getAbsolutePath() + "");
+
+        String file_path = c.getExternalCacheDir().getAbsolutePath();
+        String full_path = "/" + file_path + Calendar.getInstance().getTime().toString() + ".bmp";
+
+        File dir = new File(file_path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        File file = new File(full_path);
+        try {
+            FileOutputStream fOut = new FileOutputStream(file);
+            screenshotImage.compress(Bitmap.CompressFormat.PNG, 85, fOut);
+            fOut.flush();
+            fOut.close();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+
+        //return path to image if worked, else return null
+        File f2 = new File(full_path);
+        if (f2.exists()) {
+            return full_path;
+        } else {
+            return null;
         }
     }
 

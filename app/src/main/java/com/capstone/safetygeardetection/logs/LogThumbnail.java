@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 
 import com.capstone.safetygeardetection.R;
 
+import java.io.File;
+
 public class LogThumbnail extends LinearLayout {
 
     private ImageView violation_thumb;
@@ -41,7 +43,7 @@ public class LogThumbnail extends LinearLayout {
         violation_description.setLayoutParams(new LayoutParams(0, LayoutParams.WRAP_CONTENT, 7.5f));
         violation_timestamp.setBackgroundColor(Color.MAGENTA);
 
-        //setNewImageView(imagePath);
+        setNewImageView(imagePath);
         setDescription(description);
         setTimestamp(timestamp);
 

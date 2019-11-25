@@ -27,6 +27,10 @@ android {
         }
     }
 
+    aaptOptions {
+        noCompress "tflite"
+    }
+
     // used by Room, to test migrations
     sourceSets {
         androidTest.assets.srcDirs +=
@@ -115,8 +119,11 @@ dependencies {
     compileOnly 'com.dji:dji-sdk-provided:4.11'
 
 
-    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
+
+    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite:+'
 }

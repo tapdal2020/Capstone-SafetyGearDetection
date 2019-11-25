@@ -1,6 +1,8 @@
 package com.capstone.safetygeardetection.database;
 
-import org.bouncycastle.jcajce.provider.symmetric.DES;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +52,10 @@ public class ViolationObj {
         }
 
         return obj;
+    }
+
+    public Bitmap getImage() {
+        return BitmapFactory.decodeFile(filepath);
     }
 
     public String toString() {

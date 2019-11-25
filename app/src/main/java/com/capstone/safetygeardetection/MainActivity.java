@@ -2,15 +2,27 @@ package com.capstone.safetygeardetection;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
+import android.view.View.MeasureSpec;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.capstone.safetygeardetection.database.DatabaseJSON;
 import com.capstone.safetygeardetection.logs.LogsActivity;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseJSON dio = DatabaseJSON.getInstance(this);
         //dio.addViolation(this, "/imgs/1", "First test", "2.5", "1.4", "12:10 p.m.");
         //dio.addViolation(this, "/imgs/w", "Morning job", "2.5", "1.4", "3:21 a.m.");
+
     }
 
     public void goToFlight(View view) {
@@ -45,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLogs(View view) {
+        DatabaseJSON dio = DatabaseJSON.getInstance(this);
+
+        dio.addViolation(this, takeScreenshot(), "Screenshot test", "2.5", "1.4", "3:21 a.m.");
+
         Intent intent = new Intent(MainActivity.this, LogsActivity.class);
         startActivity(intent);
     }
@@ -52,5 +69,18 @@ public class MainActivity extends AppCompatActivity {
     public void goToSettings(View view) {
         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public Bitmap takeScreenshot() {
+        View screenshotView = findViewById(android.R.id.content);
+        screenshotView.measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+        screenshotView.setDrawingCacheEnabled(true);
+        screenshotView.buildDrawingCache(true);
+        Bitmap screenshot = Bitmap.createBitmap(screenshotView.getDrawingCache());
+        screenshotView.setDrawingCacheEnabled(false);
+
+        return screenshot;
     }
 }

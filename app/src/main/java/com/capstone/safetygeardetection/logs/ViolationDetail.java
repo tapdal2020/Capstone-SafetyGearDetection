@@ -41,8 +41,8 @@ public class ViolationDetail extends AppCompatActivity {
     }
 
     private void setNewImageView(String thumbFilePath) {
-        //Bitmap newThumb = BitmapFactory.decodeFile(thumbFilePath);
-        //violation_thumb.setImageBitmap(Bitmap.createScaledBitmap(newThumb, 800, 800, true));
+        Bitmap newThumb = BitmapFactory.decodeFile(thumbFilePath);
+        violation_thumb.setImageBitmap(Bitmap.createScaledBitmap(newThumb, 800, 800, true));
     }
 
     private void setDescription(String newText) {
